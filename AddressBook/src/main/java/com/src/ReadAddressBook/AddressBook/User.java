@@ -2,8 +2,8 @@ package com.src.ReadAddressBook.AddressBook;
 
 import java.io.Serializable;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class User implements Serializable {
 
@@ -13,7 +13,7 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String userName;
 	private Gender userGender;
-	private Date dateOfBirth;
+	private LocalDate dateOfBirth;
 
 	public User() {
 	};
@@ -22,7 +22,9 @@ public class User implements Serializable {
 		String[] arr = userLine.split(", ");
 		this.userName = arr[0];
 		this.userGender = Gender.getByGenderName(arr[1]);
-		this.dateOfBirth = new SimpleDateFormat("dd/MM/yy").parse(arr[2]);  
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy");
+		//convert String to LocalDate
+		this.dateOfBirth = LocalDate.parse(arr[2], formatter).minusYears(100);
 	}
 
 	public String getUserName() {
@@ -41,11 +43,11 @@ public class User implements Serializable {
 		this.userGender = userGender;
 	}
 
-	public Date getDateOfBirth() {
+	public LocalDate getDateOfBirth() {
 		return dateOfBirth;
 	}
 
-	public void setDateOfBirth(Date dateOfBirth) {
+	public void setDateOfBirth(LocalDate dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
 

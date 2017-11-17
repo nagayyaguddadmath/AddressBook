@@ -10,19 +10,11 @@ import junit.framework.TestSuite;
 public class AddressBookTest 
 extends TestCase
 {
-	/**
-	 * Create the test case
-	 *
-	 * @param testName name of the test case
-	 */
 	public AddressBookTest( String testName )
 	{
 		super( testName );
 	}
 
-	/**
-	 * @return the suite of tests being tested
-	 */
 	public static Test suite()
 	{
 		return new TestSuite( AddressBookTest.class );
@@ -49,6 +41,16 @@ extends TestCase
 		SearchUsersInFile searchUsers = new SearchUsersInFile();
 		User oldestUser = searchUsers.findOldestPerson(strPathOfInputFile);
 		assertEquals("Oldest user did not match", "Wes Jackson", oldestUser.getUserName());
+	}
+
+	public void testDaysBetweenUsers()
+	{
+		String strPathOfInputFile = System.getProperty("user.dir") + 
+				"\\src\\test\\resources\\" + "address-book.txt";
+
+		SearchUsersInFile searchUsers = new SearchUsersInFile();
+		long daysDiff = searchUsers.findDaysBetweenUsers(strPathOfInputFile, "Bill", "Paul");
+		assertEquals("Oldest user did not match", 2862, daysDiff);
 	}
 
 }
