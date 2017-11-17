@@ -9,6 +9,7 @@ public class SearchUsersInFile {
 	
 	private List<User> users;
 	
+	//Can inject the file path to constructor
 	public SearchUsersInFile(String filePath) {
 		ReadInputFile readFIle = new ReadInputFile();
 		users = readFIle.readUserFromFile(filePath);

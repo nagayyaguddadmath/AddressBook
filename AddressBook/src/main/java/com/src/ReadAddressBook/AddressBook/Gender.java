@@ -1,5 +1,8 @@
 package com.src.ReadAddressBook.AddressBook;
 
+/*
+ * Enum to store gender types
+ */
 public enum Gender {
 	MALE("Male"),
 	FEMALE("Female");

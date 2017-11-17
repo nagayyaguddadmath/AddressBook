@@ -5,6 +5,9 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+ * Reads Given file and returns the user list
+ */
 public class ReadInputFile {
 
 	public List<User> readUserFromFile(String filename) {
