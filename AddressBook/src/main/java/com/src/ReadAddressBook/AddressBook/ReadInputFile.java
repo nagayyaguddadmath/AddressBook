@@ -1,7 +1,7 @@
 package com.src.ReadAddressBook.AddressBook;
 
-import java.io.FileInputStream;
-import java.io.ObjectInputStream;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,14 +9,13 @@ public class ReadInputFile {
 
 	public List<User> readUserFromFile(String filename) {
 		List<User> Users = new ArrayList<User>();
-		User user = null;
+		String line;
 		try (
-				FileInputStream fin = new FileInputStream(filename);
-				ObjectInputStream ois = new ObjectInputStream(fin)
+				BufferedReader br = new BufferedReader(new FileReader(filename))
 				) {
 
-			while( (user = (User) ois.readObject()) != null){
-				Users.add(user);
+			while( (line = br.readLine()) != null){
+				Users.add(new User(line));
 			}
 
 		} catch (Exception ex) {

@@ -18,12 +18,13 @@ public class User implements Serializable {
 	public User() {
 	};
 
-	User(String userName, String gender, String dob) throws ParseException {
-		this.userName = userName;
-		this.userGender = Gender.getByGenderName(gender);
-		this.dateOfBirth = new SimpleDateFormat("dd/MM/yy").parse(dob);  
+	public User(String userLine) throws ParseException {
+		String[] arr = userLine.split(", ");
+		this.userName = arr[0];
+		this.userGender = Gender.getByGenderName(arr[1]);
+		this.dateOfBirth = new SimpleDateFormat("dd/MM/yy").parse(arr[2]);  
 	}
-	
+
 	public String getUserName() {
 		return userName;
 	}
