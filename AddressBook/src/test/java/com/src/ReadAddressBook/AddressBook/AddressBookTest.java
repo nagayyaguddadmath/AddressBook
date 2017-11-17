@@ -31,7 +31,7 @@ extends TestCase
 	/**
 	 * Rigourous Test :-)
 	 */
-	public void testApp()
+	public void testNoOfMales()
 	{
 		String strPathOfInputFile = System.getProperty("user.dir") + 
 				"\\src\\test\\resources\\" + "address-book.txt";
@@ -40,4 +40,15 @@ extends TestCase
 		long noOfUsersFound = searchUsers.findNoOFMales(strPathOfInputFile);
 		assertEquals("no of males did not match", 3, noOfUsersFound);
 	}
+
+	public void testOldestPerson()
+	{
+		String strPathOfInputFile = System.getProperty("user.dir") + 
+				"\\src\\test\\resources\\" + "address-book.txt";
+
+		SearchUsersInFile searchUsers = new SearchUsersInFile();
+		User oldestUser = searchUsers.findOldestPerson(strPathOfInputFile);
+		assertEquals("Oldest user did not match", "Wes Jackson", oldestUser.getUserName());
+	}
+
 }
