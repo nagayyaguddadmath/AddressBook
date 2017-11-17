@@ -1,28 +1,38 @@
 package com.src.ReadAddressBook.AddressBook;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /*
  * Reads Given file and returns the user list
  */
 public class ReadInputFile {
 
-	public List<User> readUserFromFile(String filename) {
+	public List<User> readUserFromFile(String filePath) throws IOException, ParseException {
 		List<User> Users = new ArrayList<User>();
-		String line;
+		File file = new File(filePath);
 		try (
-				BufferedReader br = new BufferedReader(new FileReader(filename))
+				Scanner scanner = new Scanner(file)
 				) {
 
-			while( (line = br.readLine()) != null){
-				Users.add(new User(line));
+			while(scanner.hasNextLine()){
+				Users.add(new User(scanner.nextLine()));
 			}
 
-		} catch (Exception ex) {
-			ex.printStackTrace();
+		} catch (ParseException ex) {
+			System.out.println(ex.getMessage());
+			throw ex;
+		} catch (FileNotFoundException ex) {
+			System.out.println(ex.getMessage());
+			throw ex;
+			
 		} 
 
 		return Users;
